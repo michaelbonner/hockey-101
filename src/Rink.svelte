@@ -15,11 +15,11 @@
    {#each players as p}<div class="player" style="--x:{p.x}%;--y:{p.y}%">{p.label}</div>{/each}
   {:else if mode === 'offside'}
    <div class="player" style="--x:{step ? 76 : 61}%;--y:39%">A</div>
-   <div class="puck" style="--x:70%;--y:64%"></div><div class="puck-label">PUCK →</div>
+   <div class="puck" style="--x:70%;--y:64%"></div>
    <div class="diagram-callout" class:bad={step}>{step ? 'PLAYER FIRST = OFFSIDE' : 'PUCK FIRST = ONSIDE'}</div>
   {:else if mode === 'icing'}
    <div class="player" style="--x:34%;--y:58%">A</div><div class="puck" style="--x:{step ? 94 : 38}%;--y:58%"></div>
-   <div class="travel-arrow">································→</div>
+   <div class="travel-arrow"></div>
    <div class="diagram-callout">{step ? 'WHISTLE → BACK TO YOUR END' : 'SHOT FROM BEHIND CENTER'}</div>
   {:else if mode === 'powerplay' || mode === 'empty'}
    {#each [{x:48,y:24},{x:62,y:30},{x:49,y:72},{x:63,y:70},{x:75,y:49}] as p}<div class="player" style="--x:{p.x}%;--y:{p.y}%">●</div>{/each}
@@ -27,8 +27,8 @@
    <div class="player opponent" style="--x:89%;--y:50%">G</div>
    {#if mode === 'empty'}<div class="player opponent" style="--x:67%;--y:18%">●</div><div class="player" style="--x:57%;--y:49%">6</div><div class="diagram-callout">EMPTY NET ←</div>{:else}<div class="player" style="--x:11%;--y:50%">G</div>{/if}
   {:else}
-   <div class="zone-label" style="--x:24%">DEFENSIVE<br/>ZONE</div><div class="zone-label" style="--x:50%">NEUTRAL<br/>ZONE</div><div class="zone-label" style="--x:76%">ATTACKING<br/>ZONE</div>
+   <div class="zone-label" style="--x:21.5%">Defensive<br/>zone</div><div class="zone-label" style="--x:50%">Neutral<br/>zone</div><div class="zone-label" style="--x:78.5%">Attacking<br/>zone</div>
   {/if}
  </div>
- <div class="rink-caption"><span>YOUR TEAM</span><span>ATTACKING THIS WAY ⟶</span></div>
+ <p class="rink-caption">Your team attacks this way →</p>
 </div>
