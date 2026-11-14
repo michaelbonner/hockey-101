@@ -81,6 +81,20 @@ figure img{width:100%;height:52vh;object-fit:cover;border-radius:12px}
 .zone-label{position:absolute;left:var(--x);top:50%;transform:translate(-50%,-50%);font-size:clamp(10px,1vw,15px);font-weight:600;line-height:1.3;text-align:center;color:#3c5d76}
 .rink-caption{color:var(--faint);padding:12px 4px 0;font-size:13px;text-align:right}
 .player,.puck{position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%);z-index:2;transition:left .7s ease}
+.play .player,.play .puck{transition:left .9s ease-in-out,top .9s ease-in-out,opacity .3s}
+.play.reset .player,.play.reset .puck{transition:none}
+.player.gone{opacity:0}
+.official{position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:1px}
+.official svg{width:30px;height:50px;overflow:visible}
+.official span{font-size:9px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#23425b;background:#ffffffcc;border-radius:4px;padding:1px 4px}
+.official-shirt{fill:#fff;stroke:#0f1720;stroke-width:.8}
+.official-stripes{stroke:#0f1720;stroke-width:1.4}
+.official-head{fill:#0f1720}
+.official-leg{stroke:#0f1720;stroke-width:2.6;stroke-linecap:round}
+.official-limb{stroke:#0f1720;stroke-width:2.2;stroke-linecap:round}
+.official-band{stroke:#f07a1a;stroke-width:3}
+.official-arm{transform-box:view-box;transform-origin:17px 12px;transition:transform .45s ease}
+.official.up .official-arm{transform:rotate(-165deg)}
 .player{background:var(--navy);color:#fff;border:2px solid #fff;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-size:10px;font-weight:700}
 .player.opponent{background:#c15255}
 .puck{width:12px;height:12px;border-radius:50%;background:#0f1720}

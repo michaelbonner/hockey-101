@@ -41,10 +41,11 @@
    </div>
    <div class="slide-visual">
    {#if current.kind==='photo'}<figure><img src={`./images/${current.image}`} alt={current.image==='utah-st-louis-faceoff.jpg'?'Two NHL centers prepare for a face-off with teammates positioned around them':'Utah players Jack McBain, Karel Vejmelka and Mikhail Sergachev defend their net against Seattle'}/></figure>
-   {:else if ['rink','positions','offside','icing','powerplay','empty'].includes(current.kind)}
+   {:else if ['rink','positions','offside','delayed-offside','icing','delayed-penalty','powerplay','empty'].includes(current.kind)}
     <Rink mode={current.kind} step={example}/>
     {#if current.kind==='offside' || current.kind==='icing'}<div class="demo-controls"><button class="demo-button" onclick={()=>example=!example}>{current.kind==='offside'?(example?'Show legal entry':'Move player ahead of puck'):(example?'Reset the play':'Send the puck down ice')}</button></div>{/if}
-    {#if current.kind==='offside'}<p class="visual-note">Delayed offside? Attackers can leave the zone to “tag up” before playing the puck.</p>{/if}
+    {#if current.kind==='delayed-offside'}<div class="demo-controls"><button class="demo-button" onclick={()=>example=!example}>{example?'Show the tag-up':'Play the puck instead'}</button></div><p class="visual-note">Linesmen wear plain stripes and watch the lines.</p>{/if}
+    {#if current.kind==='delayed-penalty'}<div class="demo-controls"><button class="demo-button" onclick={()=>example=!example}>{example?'Show the whistle':'Score during the delay'}</button></div><p class="visual-note">Referees wear orange armbands and call the penalties.</p>{/if}
     {#if current.kind==='icing'}<p class="visual-note">The diagram shows 5-on-5 with an untouched puck. In the NHL, a shorthanded team may ice the puck, and officials can wave icing off.</p>{/if}
    {:else if current.kind==='clock'}<div class="periods">{#each current.items as item,i}<div><h2>{item[0]}</h2><p>{item[1]}</p></div>{/each}</div>
    {:else if current.kind==='compare' || current.kind==='overtime'}<div class="comparison">{#each current.items as item}<div><span class="eyebrow">{item[0]}</span><h2>{item[1]}</h2><p>{item[2]}</p></div>{/each}</div>
