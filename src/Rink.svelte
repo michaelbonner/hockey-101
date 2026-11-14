@@ -24,9 +24,11 @@
   {#if mode === 'positions'}
    {#each players as p}<div class="player" style="--x:{p.x}%;--y:{p.y}%">{p.label}</div>{/each}
   {:else if mode === 'offside'}
-   <div class="player" style="--x:{step ? 76 : 61}%;--y:39%">A</div>
-   <div class="puck" style="--x:70%;--y:64%"></div>
-   <div class="diagram-callout" class:bad={step}>{step ? 'OFFSIDE. PLAYER WENT FIRST' : 'ONSIDE. PUCK WENT FIRST'}</div>
+   {#key step}
+   <div class="player offside-player" class:offside={step} style="--x:{step ? 76 : 72}%;--y:39%">A</div>
+   <div class="puck offside-puck" class:offside={step} style="--x:{step ? 72 : 76}%;--y:64%"></div>
+   <div class="diagram-callout offside-callout" class:bad={step}>{step ? 'OFFSIDE. PLAYER WENT FIRST' : 'ONSIDE. PUCK WENT FIRST'}</div>
+   {/key}
   {:else if mode === 'icing'}
    <div class="player" style="--x:40%;--y:58%">A</div><div class="puck" style="--x:{step ? 96 : 44}%;--y:58%"></div>
    <div class="travel-arrow"></div>
