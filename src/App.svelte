@@ -23,7 +23,7 @@
 <svelte:window onkeydown={key} onhashchange={()=>{const n=Number(location.hash.slice(1));if(n>=1&&n<=slides.length)index=n-1;}} />
 <div class="app isolate antialiased">
  <header class="flex items-center justify-between gap-4">
-  <a class="brand" href="#1" onclick={()=>go(0)}>H<span>●</span>CKEY <span class="brand-number">101</span></a>
+  <a class="brand" href="#1" onclick={()=>go(0)}>HOCKEY <span class="brand-number">101</span></a>
   <div class="edition max-sm:hidden">A SPECTATOR’S FIELD GUIDE <span> / </span> NHL EDITION</div>
   <button class="text-button" onclick={()=>overview=!overview} aria-expanded={overview}>☷ <span>All slides</span></button>
  </header>
