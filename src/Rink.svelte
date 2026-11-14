@@ -29,6 +29,10 @@
    <div class="puck offside-puck" class:offside={step} style="--x:{step ? 72 : 76}%;--y:64%"></div>
    <div class="diagram-callout offside-callout" class:bad={step}>{step ? 'OFFSIDE. PLAYER WENT FIRST' : 'ONSIDE. PUCK WENT FIRST'}</div>
    {/key}
+  {:else if mode === 'stayin'}
+   <div class="player stayin-player" style="--x:78%;--y:36%">A</div>
+   <div class="puck" style="--x:86%;--y:66%"></div>
+   {#if step}<div class="diagram-callout">PLAY ON. PUCK NEVER LEFT</div>{/if}
   {:else if mode === 'icing'}
    <div class="player" style="--x:40%;--y:58%">A</div><div class="puck" style="--x:{step ? 96 : 44}%;--y:58%"></div>
    <div class="travel-arrow"></div>
