@@ -27,6 +27,17 @@ Offside and icing have interactive examples. The quiz includes three scenarios a
 
 Change slide copy, order, and speaker notes in `src/slides.js`. Layouts and interactions live in `src/App.svelte`; rink diagrams in `src/Rink.svelte`; styling in `src/style.css`. Keep photo credits and license information when publishing.
 
+## Deploy to Cloudflare
+
+The static site is configured in `wrangler.jsonc` for `https://hockey.michaelbonner.dev`.
+
+```sh
+npx wrangler login
+npm run deploy
+```
+
+Wrangler builds and uploads `dist/`, then binds the custom domain. The authenticated Cloudflare account must manage the `michaelbonner.dev` zone. Cloudflare manages the domain's DNS record and HTTPS certificate. Subsequent `npm run deploy` runs publish updated slides. Deployment is manual; pushing to GitHub alone does not redeploy.
+
 ## Host on your server
 
 ```sh
