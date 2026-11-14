@@ -2,6 +2,8 @@
  import { onMount } from 'svelte';
  import { slides, questions, rulebook } from './slides.js';
  import Rink from './Rink.svelte';
+ import Photo, { warm } from './Photo.svelte';
+ const coverSizes = '(max-width:800px) 100vw, 58vw', figureSizes = '(max-width:800px) 88vw, 45vw';
  let index = $state(0), overview = $state(false), notes = $state(false), example = $state(false), revealed = $state(false), question = $state(0);
  let current = $derived(slides[index]);
  let touchX = 0;
@@ -18,7 +20,9 @@
   if(e.key.toLowerCase()==='f')fullscreen();
  }
  async function fullscreen(){if(document.fullscreenElement)await document.exitFullscreen();else await document.documentElement.requestFullscreen().catch(()=>{});}
- onMount(()=>{const n=Number(location.hash.slice(1));if(n>=1&&n<=slides.length)index=n-1;});
+ onMount(()=>{const n=Number(location.hash.slice(1));if(n>=1&&n<=slides.length)index=n-1;
+  const warmPhotos=()=>{for(const s of slides)if(s.image)warm(s.image,figureSizes);};
+  if(document.readyState==='complete')warmPhotos();else addEventListener('load',warmPhotos,{once:true});});
 </script>
 <svelte:window onkeydown={key} onhashchange={()=>{const n=Number(location.hash.slice(1));if(n>=1&&n<=slides.length)index=n-1;}} />
 <div class="app isolate antialiased">
@@ -30,7 +34,7 @@
  {#key index}
  <article class:cover={current.kind==='cover'} class:photo-slide={current.kind==='photo'} class="slide" aria-label={`Slide ${index+1} of ${slides.length}: ${current.title.replaceAll('\n',' ')}`}>
   {#if current.kind==='cover'}
-   <div class="cover-photo"><img src="./images/utah-edmonton-delta-center.jpg" alt="Utah and Edmonton play in front of a packed crowd at the Delta Center"/><div class="photo-shade"></div></div>
+   <div class="cover-photo"><Photo name="utah-edmonton-delta-center" alt="Utah and Edmonton play in front of a packed crowd at the Delta Center" sizes={coverSizes} priority/><div class="photo-shade"></div></div>
    <div class="cover-content"><h1>HOCKEY<span>101.</span></h1><p class="cover-sub">{current.subtitle}</p><p class="cover-description">{current.take}</p><button class="start" onclick={()=>go(1)}>Let’s drop the puck</button></div>
   {:else}
    <div class="slide-copy"><p class="eyebrow">{current.section}</p><h1>{current.title}</h1><p class="subtitle">{current.subtitle}</p>
@@ -40,7 +44,7 @@
    {#if current.take}<p class="takeaway">{current.take}</p>{/if}
    </div>
    <div class="slide-visual">
-   {#if current.kind==='photo'}<figure><img src={`./images/${current.image}`} alt={current.image==='utah-st-louis-faceoff.jpg'?'Two NHL centers prepare for a face-off with teammates positioned around them':'Utah defenseman Nate Schmidt shoots as Vegas forward Pavel Dorofeyev dives to block'}/></figure>
+   {#if current.kind==='photo'}<figure><Photo name={current.image} alt={current.alt} sizes={figureSizes}/></figure>
    {:else if ['rink','positions','offside','delayed-offside','icing','delayed-penalty','powerplay','empty'].includes(current.kind)}
     <Rink mode={current.kind} step={example}/>
     {#if current.kind==='offside' || current.kind==='icing'}<div class="demo-controls"><button class="demo-button" onclick={()=>example=!example}>{current.kind==='offside'?(example?'Show legal entry':'Move player ahead of puck'):(example?'Reset the play':'Send the puck down ice')}</button></div>{/if}

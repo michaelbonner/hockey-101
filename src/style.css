@@ -12,6 +12,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-off
 h1,h2,h3,p{margin:0}
 p{text-wrap:pretty}
 figure{margin:0}
+picture{display:contents}
 
 /* Frame */
 .app{min-height:100dvh;display:flex;flex-direction:column}
