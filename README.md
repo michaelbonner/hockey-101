@@ -91,8 +91,9 @@ Browser tests start their own local Vite server. First run may require `bunx pla
 
 Rules: [NHL Video Rulebook](https://www.nhl.com/info/video-rulebook), including the official 2026–27 rulebook. Simplified examples are identified in notes; this is a spectator guide, not an exhaustive referee manual.
 
-- `toronto-montreal.jpg`: [NHL faceoff](https://commons.wikimedia.org/wiki/File:NHL_faceoff.jpg), Eternalsleeper, [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/), cropped in layouts.
-- `vancouver-edmonton.jpg`: [Face off](https://commons.wikimedia.org/wiki/File:Face_off.jpg), Anders Elkjaer Johansen, public domain, cropped in layouts.
+- `utah-st-louis-faceoff.jpg`: [Utah–St. Louis preseason face-off, September 22, 2024](https://commons.wikimedia.org/wiki/File:NHL-Utah-STL-DesMoines2024.jpg), Jar-Lar, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+- `utah-seattle-net.jpg`: [McBain, Vejmelka, and Sergachev, December 30, 2024](https://commons.wikimedia.org/wiki/File:McBain,_Vejmelka,_and_Sergachev_-_December_2024.jpg), Jenn G, [CC BY-SA 2.0](https://creativecommons.org/licenses/by-sa/2.0/).
+- Both photos show the Utah Hockey Club before the Mammoth rebrand. Images are resized to 1920 pixels and cropped in layouts; photo adaptations remain under their respective ShareAlike licenses.
 - Inter: Rasmus Andersson, SIL Open Font License; see `public/fonts/LICENSE.txt`.
 
 Historic photos illustrate general gameplay and are not evidence of a specific violation. Rink diagrams are editable HTML/CSS instructional schematics. Independent project, not affiliated with the NHL.
