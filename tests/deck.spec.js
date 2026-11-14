@@ -5,7 +5,7 @@ test('present, navigate, demonstrate rules and reveal quiz',async({page})=>{
  await page.getByRole('button',{name:'Let’s drop the puck'}).click();await expect(page).toHaveURL(/#2$/);
  await page.keyboard.press('ArrowLeft');await expect(page).toHaveURL(/#1$/);
  await page.getByRole('button',{name:'All slides'}).click();await expect(page.locator('.overview-grid button')).toHaveCount(19);
- await page.locator('.overview-grid button').nth(6).click();
+ await page.locator('.overview-grid button').nth(7).click();
  await page.getByRole('button',{name:'Move player ahead of puck'}).click();await expect(page.locator('.diagram-callout')).toHaveText('OFFSIDE. PLAYER WENT FIRST');
  await page.keyboard.press('n');await expect(page.locator('.notes')).toContainText('tag up');await page.keyboard.press('Escape');
  await page.goto('/#17');await page.reload();await page.getByRole('button',{name:'Make the call'}).click();await expect(page.locator('.answer h3')).toHaveText('Offside');
@@ -22,5 +22,5 @@ test('all slides fit horizontally and assets load on desktop and mobile',async({
   }
  }
  await page.setViewportSize({width:1440,height:900});await page.goto('/#1');await page.reload();await page.screenshot({path:'/tmp/hockey-cover.png',animations:'disabled'});
- await page.goto('/#7');await page.reload();await page.screenshot({path:'/tmp/hockey-offside.png',animations:'disabled'});
+ await page.goto('/#8');await page.reload();await page.screenshot({path:'/tmp/hockey-offside.png',animations:'disabled'});
 });

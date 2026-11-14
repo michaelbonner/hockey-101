@@ -101,19 +101,15 @@
     </div>
     {#if shown.callout}<div class="diagram-callout" class:bad={shown.callout.bad}>{shown.callout.text}</div>{/if}
    </div>
-  {:else if mode === 'stayin'}
-   <div class="player stayin-player" style="--x:78%;--y:36%">A</div>
-   <div class="puck" style="--x:86%;--y:66%"></div>
-   {#if step}<div class="diagram-callout">PLAY ON. PUCK NEVER LEFT</div>{/if}
   {:else if mode === 'icing'}
    <div class="player" style="--x:40%;--y:58%">A</div><div class="puck" style="--x:{step ? 96 : 44}%;--y:58%"></div>
    <div class="travel-arrow"></div>
    <div class="diagram-callout">{step ? 'ICING. FACE-OFF IN YOUR END' : 'SHOT FROM BEHIND CENTER'}</div>
   {:else if mode === 'powerplay' || mode === 'empty'}
-   {#each [{x:70,y:25},{x:83,y:10},{x:70,y:75},{x:83,y:90},{x:89,y:38}] as p}<div class="player" style="--x:{p.x}%;--y:{p.y}%">●</div>{/each}
-   {#each [{x:76,y:42},{x:76,y:58},{x:85,y:24},{x:85,y:76}] as p}<div class="player opponent" style="--x:{p.x}%;--y:{p.y}%">●</div>{/each}
+   {#each [{x:70,y:25},{x:83,y:10},{x:70,y:75},{x:83,y:90},{x:89,y:38}] as p, i}<div class="player" style="--x:{p.x}%;--y:{p.y}%">{i + 1}</div>{/each}
+   {#each [{x:76,y:42},{x:76,y:58},{x:85,y:24},{x:85,y:76}] as p, i}<div class="player opponent" style="--x:{p.x}%;--y:{p.y}%">{i + 1}</div>{/each}
    <div class="player opponent" style="--x:92%;--y:50%">G</div>
-   {#if mode === 'empty'}<div class="player opponent" style="--x:90%;--y:63%">●</div><div class="player" style="--x:71%;--y:50%">6</div><div class="diagram-callout">EMPTY NET ←</div>{:else}<div class="player" style="--x:9%;--y:50%">G</div>{/if}
+   {#if mode === 'empty'}<div class="player opponent" style="--x:90%;--y:63%">5</div><div class="player" style="--x:71%;--y:50%">6</div><div class="diagram-callout">EMPTY NET ←</div>{:else}<div class="player" style="--x:9%;--y:50%">G</div>{/if}
   {:else}
    <div class="zone-label zone-def" style="--x:18.3%">Defensive<br/>zone</div><div class="zone-label zone-neutral" style="--x:50%">Neutral<br/>zone</div><div class="zone-label zone-att" style="--x:81.7%">Attacking<br/>zone</div>
   {/if}
