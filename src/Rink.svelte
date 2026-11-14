@@ -4,9 +4,9 @@
  const players = [{x:9,y:50,label:'G'},{x:26,y:30,label:'D'},{x:26,y:70,label:'D'},{x:53,y:25,label:'LW'},{x:58,y:50,label:'C'},{x:53,y:75,label:'RW'}];
 </script>
 <div class="rink-wrap">
- <div class="rink" aria-label="Hockey rink diagram. Team attacks toward the right goal.">
+ <div class="rink" class:zoned={mode === 'rink'} aria-label="Hockey rink diagram. Team attacks toward the right goal.">
   <svg class="rink-lines" viewBox="0 0 200 100" aria-hidden="true">
-   <rect class="zone" x="0" y="0" width="66.2" height="100"/><rect class="zone" x="133.8" y="0" width="66.2" height="100"/>
+   <rect class="zone zone-def" x="0" y="0" width="66.2" height="100"/><rect class="zone zone-neutral" x="66.2" y="0" width="67.6" height="100"/><rect class="zone zone-att" x="133.8" y="0" width="66.2" height="100"/>
    {#each [13.2,186.8] as x}<line class="goal-line" x1={x} y1="0" x2={x} y2="100"/>{/each}
    {#each [66.2,133.8] as x}<line class="blue-line" x1={x} y1="0" x2={x} y2="100"/>{/each}
    <line class="center-line" x1="100" y1="0" x2="100" y2="100"/>
@@ -37,7 +37,7 @@
    <div class="player opponent" style="--x:92%;--y:50%">G</div>
    {#if mode === 'empty'}<div class="player opponent" style="--x:90%;--y:63%">●</div><div class="player" style="--x:71%;--y:50%">6</div><div class="diagram-callout">EMPTY NET ←</div>{:else}<div class="player" style="--x:9%;--y:50%">G</div>{/if}
   {:else}
-   <div class="zone-label" style="--x:18.3%">Defensive<br/>zone</div><div class="zone-label" style="--x:50%">Neutral<br/>zone</div><div class="zone-label" style="--x:81.7%">Attacking<br/>zone</div>
+   <div class="zone-label zone-def" style="--x:18.3%">Defensive<br/>zone</div><div class="zone-label zone-neutral" style="--x:50%">Neutral<br/>zone</div><div class="zone-label zone-att" style="--x:81.7%">Attacking<br/>zone</div>
   {/if}
  </div>
  <p class="rink-caption">Your team attacks this way →</p>
