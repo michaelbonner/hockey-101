@@ -5,8 +5,8 @@ A 17-slide hockey introduction for a party, built with Svelte 5, Tailwind CSS 4,
 ## Run locally
 
 ```sh
-npm install
-npm run dev
+bun install
+bun run dev
 ```
 
 Open http://localhost:5173. For a party, use your browser’s fullscreen mode or the deck’s Fullscreen button.
@@ -32,11 +32,11 @@ Change slide copy, order, and speaker notes in `src/slides.js`. Layouts and inte
 The static site is configured in `wrangler.jsonc` for `https://hockey.michaelbonner.dev`.
 
 ```sh
-npx wrangler login
-npm run deploy
+bunx wrangler login
+bun run deploy
 ```
 
-Wrangler builds and uploads `dist/`, then binds the custom domain. The authenticated Cloudflare account must manage the `michaelbonner.dev` zone. Cloudflare manages the domain's DNS record and HTTPS certificate. Subsequent `npm run deploy` runs publish updated slides manually. Automatic builds are configured separately in Cloudflare Workers Builds as described below.
+Wrangler builds and uploads `dist/`, then binds the custom domain. The authenticated Cloudflare account must manage the `michaelbonner.dev` zone. Cloudflare manages the domain's DNS record and HTTPS certificate. Subsequent `bun run deploy` runs publish updated slides manually. Automatic builds are configured separately in Cloudflare Workers Builds as described below.
 
 ## Automatic production and preview builds
 
@@ -46,20 +46,21 @@ Connect `michaelbonner/hockey-101` in the Worker's **Settings → Builds → Con
 | --- | --- |
 | Production branch | `main` |
 | Root directory | `/` |
-| Build command | `npm run check && npm run build` |
+| Build command | `bun run check && bun run build` |
 | Production deploy command | `npx wrangler deploy` |
 | Preview / non-production branch builds | Enabled |
 | Preview command | `npx wrangler preview` |
 | Build API token | Create/select a Cloudflare-managed build token in the dashboard |
+| Build variable | `BUN_VERSION` = `1.4.4` (the default Bun in the build image cannot read `bun.lock`) |
 
 Once connected, pushes to `main` update `https://hockey.michaelbonner.dev`. Other branches create or update isolated Worker Previews; Cloudflare's GitHub integration posts preview links to associated pull requests. Preview builds use `wrangler preview`, which does not deploy to the production custom domain. The production `preview_urls: false` setting disables production version URLs; it does not replace the separate Workers Builds Preview setting.
 
-Check deployment results in Cloudflare's Builds tab and GitHub checks. `npm run build:ci` runs the same checks locally. To publish a preview manually from a feature branch, use `npm run deploy:preview` (the current branch names the preview).
+Check deployment results in Cloudflare's Builds tab and GitHub checks. `bun run build:ci` runs the same checks locally. To publish a preview manually from a feature branch, use `bun run deploy:preview` (the current branch names the preview).
 
 ## Host on your server
 
 ```sh
-npm run build
+bun run build
 ```
 
 Upload **the contents of `dist/`** to any static web server (Nginx, Caddy, Apache, etc.). No Node process, database, environment variables, or server-side rendering is required. Vite uses relative asset URLs, so this also works under a subdirectory such as `/hockey/`. No SPA fallback is necessary because slide URLs use hashes.
@@ -74,17 +75,17 @@ hockey.example.com {
 }
 ```
 
-Run `npm run preview` to inspect the production build before uploading. Rebuild and upload `dist/` after editing.
+Run `bun run preview` to inspect the production build before uploading. Rebuild and upload `dist/` after editing.
 
 ## Verification
 
 ```sh
-npm run check
-npm run build
-npx playwright test
+bun run check
+bun run build
+bunx playwright test
 ```
 
-Browser tests start their own local Vite server. First run may require `npx playwright install chromium`.
+Browser tests start their own local Vite server. First run may require `bunx playwright install chromium`.
 
 ## Sources and assets
 
