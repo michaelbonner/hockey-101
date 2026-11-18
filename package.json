@@ -8,9 +8,9 @@
     "build": "vite build",
     "preview": "vite preview --host 0.0.0.0",
     "check": "svelte-check --tsconfig ./jsconfig.json",
-    "deploy": "npm run build && wrangler deploy",
-    "build:ci": "npm run check && npm run build",
-    "deploy:preview": "npm run build:ci && wrangler preview"
+    "deploy": "bun run build && wrangler deploy",
+    "build:ci": "bun run check && bun run build",
+    "deploy:preview": "bun run build:ci && wrangler preview"
   },
   "dependencies": {
     "svelte": "^5.0.0"
