@@ -1,0 +1,14 @@
+{
+ "name": "Hockey 101, a spectator’s field guide",
+ "short_name": "Hockey 101",
+ "description": "A 19-slide guide to watching NHL hockey, with interactive offside and icing examples and a quiz.",
+ "start_url": "/",
+ "display": "standalone",
+ "background_color": "#0f1720",
+ "theme_color": "#101719",
+ "icons": [
+  { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+  { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" },
+  { "src": "/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+ ]
+}
